@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page index </title>
+		<style>
+			div {
+			  border-style: solid;
+			  border-width: thin;
+			}
+		</style>
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.5/ejs.min.js" charset="UTF-8"></script>
+		 <script src="../js/post.js" charset="UTF-8"></script>
+		 <script src="../js/comment.js" charset="UTF-8"></script>
+	</head>
+	<body>
+		<div style="text-align: center; border-style: hidden; margin: 24px">
+			<button type="button" class="btn btn-primary" onclick="handleAddPost()">Add post</button>
+		</div>
+		<center>
+			<div style="padding: 20px; border: none" id="postView">
+			<br>
+	   </div>
+		<hr>
+	</center>
+	</body>
+  <script>
+   var my_token = localStorage.getItem('my_token')
+   function handleGetPost(){
+     return $.ajax({
+       url: '/posts',
+       method: 'GET',
+       headers: {
+         authorization: 'Bearer ' + my_token
+       },
+     })
+   }
+
+	 function downloadTemplate(){
+		 return $.ajax({
+			 url: '/dashboard',
+			 method: 'GET',
+			 headers: {
+				 authorization: 'Bearer ' + my_token
+			 },
+		 })
+	 }
+
+
+
+   async function main(){
+     let data = await handleGetPost()
+		 let template = await downloadTemplate()
+     let html = ejs.render(template, {posts: data.posts, comments: data.comments});
+     $('#postView').html(html)
+   }
+
+	 main()
+   </script>
+</html>

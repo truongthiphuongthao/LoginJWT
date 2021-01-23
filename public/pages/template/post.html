@@ -1,0 +1,35 @@
+<% posts.forEach(function(post){%>
+  <div style="margin:20px; padding: 10px">
+    <input id="delete-post" class="btn btn-secondary" type="button" value="DELETE" style="float: right; background-color: red;" onclick="handleDeletePost('<%= post._id %>')">
+    <input id="update-btn" class="btn btn-secondary" type="button" value="Update" style="float: right; background-color: blue; margin-right: 10px;" onclick="handleDisplayUpdate('<%= post._id %>')">
+    <p id="id" style="visibility: hidden;"><%= post._id %></p>
+    <p><%= post.post_content %></p>
+    <% post.image_links.forEach(function(image){%>
+      <img src="<%= image %>" alt="Trulli" width="300" height="300">
+    <% }) %>
+    <div style="margin-top: 5px; border: none; padding: 10px;">
+      <input id="comment-post" class="btn btn-secondary" type="button" value="COMMENT" style="background-color: green;" onclick="handleAddComment('<%= post._id %>')">
+    </div>
+    <div id="<%= post._id %>" style="border: none;">
+    </div>
+  </div>
+  <% comments.forEach(function(comment){ %>
+    <% if(post._id.toString() == comment.post_id.toString()) { %>
+    <div style="margin: 20px">
+      <table>
+      <tr>
+      <td>
+        <input type="text" id="<%= comment._id %>" name="lname" value="<%= comment.comment_details %>" disabled>
+      </td>
+      <td>
+        <p style="color: red; padding: 10px; font-weight: bold;" onclick="handleDeleteComment('<%= comment._id %>')"> X </p>
+      </td>
+      <td>
+        <p style="color: blue; padding: 10px; font-weight: bold;" onclick="handleEditComment('<%= comment._id %>')"> Edit </p>
+      </td>
+      </tr>
+      </table>
+    </div>
+    <% } %>
+  <% }) %>
+<% }) %>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	   <script src="../js/post.js" charset="UTF-8"></script>
+	</head>
+	<body>
+		<h1 style="text-align:center;"> Update Post </h1>
+		<hr>
+		<div style="margin: 10px">
+			<form style="width:100%">
+				<label> <strong> Post content </strong> </label>
+				<br>
+				<textarea rows="10" cols="94" name="comment" form="usrform" id="post_content_update"></textarea>
+				<br>
+				<label> <strong> Image link </strong> </label>
+				<br>
+        <% post_id.image_links.forEach(function(image_link){ %>
+            <div>
+              <table class="table" id="main-list">
+                <tr>
+                  <td id="update_image_link"> <%= image_link %> </td>
+                </tr>
+              </table>
+            </div>
+          <% }) %>
+			</form>
+			<hr>
+			<button type="button" class="btn btn-primary" id="save_post_update" onclick="updatePost('<%= post_id._id%>')">Save Post</button>
+			</div>
+	</body>
+</html>
