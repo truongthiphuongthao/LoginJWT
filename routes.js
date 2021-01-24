@@ -45,6 +45,7 @@ Router.get('/get-update-post/:id', authenticateToken, async(req, res) => {
   try{
 		let post_id = await db.Post.findById(req.params.id)
     let data = {post_id: post_id}
+    console.log(data)
 	  res.send({data})
 	}catch(err){
 		console.log(err)

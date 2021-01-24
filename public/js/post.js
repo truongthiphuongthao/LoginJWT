@@ -84,31 +84,31 @@ function savePost(){
 }
 
 // // update post
-// function handleDisplayUpdate(value){
-// 	$.ajax({
-// 		url: "/update-post",
-// 		method: "GET",
-// 		headers: {
-//           authorization: 'Bearer ' + my_token
-//     },
-// 		success: function(res){
-// 			window.location.href = "../pages/update-post.html"
-// 		}
-// 	})
-// 	$.ajax({
-// 		url: "/get-update-post/" + value,
-// 		method: "GET",
-// 		headers: {
-// 			authorization: 'Bearer ' + my_token
-// 		},
-// 		data: {
-// 			post_id: value
-// 		},
-// 		success: function(res){
-// 			$('#post_content_update').innerHTML = "hello"
-// 		}
-// 	})
-// }
+function handleDisplayUpdate(value){
+		$.ajax({
+			url: "/update-post",
+			method: "GET",
+			headers: {
+				authorization: 'Bearer ' + my_token
+			},
+			success: function(){
+				window.location.href = "../pages/update-post.html"
+			}
+		})
+ 		$.ajax({
+				url: "/get-update-post/" + value,
+				method: "GET",
+				headers: {
+					authorization: 'Bearer ' + my_token
+				},
+				data: {
+					post_id: value
+				},
+				success: function(res){
+					console.log(JSON.stringify(res))
+				}
+			})
+}
 
 
 
